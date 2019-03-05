@@ -1,0 +1,300 @@
+<!-- MAIN_PC_CONTROLLER https://pub.s4.exacttarget.com/ozcucalk3rp-->
+
+<!DOCTYPE html>
+<html lang="en">
+<script runat='server' language="javascript">
+  Platform.Load('Core', '1');
+  try {
+</script>
+
+%%[
+
+/* Get the Id of the account */
+SET @mid = [memberid]
+
+SET @debug = 1
+
+IF @debug == 1 AND Empty(RequestParameter("skey")) THEN
+SET @skey = "testing@email.com"
+ELSE
+SET @skey = RequestParameter("skey")
+ENDIF
+
+/* Create the subscriber's object */
+SET @subscriber = CreateObject( "Subscriber" )
+SetObjectProperty( @subscriber, "EmailAddress", @skey )
+SetObjectProperty( @subscriber, "SubscriberKey", @skey )
+
+
+/* make sure the system is posting */
+SET @isUpdate = RequestParameter("email")
+
+SET @save = "FALSE"
+
+IF Not Empty(@isUpdate) THEN
+
+SET @save = "TRUE"
+
+/* get the attributes */
+/* Get form fields */
+SET @form_firstName = RequestParameter("firstName")
+SET @form_email = RequestParameter("email")
+SET @form_country = RequestParameter("country")
+SET @form_state = RequestParameter("state")
+SET @form_classical = RequestParameter("classical")
+IF Empty(@form_classical) THEN
+SET @form_classical = "false"
+ENDIF
+SET @form_Country_OR_Folk = RequestParameter("Country_OR_Folk")
+IF Empty(@form_Country_OR_Folk) THEN
+SET @form_Country_OR_Folk = "false"
+ENDIF
+SET @form_Jazz = RequestParameter("Jazz")
+IF Empty(@form_Jazz) THEN
+SET @form_Jazz = "false"
+ENDIF
+SET @form_pop = RequestParameter("Pop")
+IF Empty(@form_pop) THEN
+SET @form_pop = "false"
+ENDIF
+SET @form_Rock = RequestParameter("Rock")
+IF Empty(@form_Rock) THEN
+SET @form_Rock = "false"
+ENDIF
+SET @form_HipHop_and_RandB= RequestParameter("HipHop_and_RandB")
+IF Empty(@form_HipHop_and_RandB) THEN
+SET @form_HipHop_and_RandB = "false"
+ENDIF
+SET @Latin= RequestParameter("Latin")
+IF Empty(@Latin) THEN
+SET @form_Latin = "false"
+ENDIF
+
+SET @form_listens_CD = RequestParameter("listens_CD")
+IF Empty(@form_listens_CD) THEN
+SET @form_listens_CD = "false"
+ENDIF
+SET @form_listens_Downloads = RequestParameter("listens_Downloads")
+IF Empty(@form_listens_Downloads) THEN
+SET @form_listens_Downloads = "false"
+ENDIF
+SET @form_listens_Live = RequestParameter("listens_Live")
+IF Empty(@form_listens_Live) THEN
+SET @form_listens_Live = "false"
+ENDIF
+SET @form_listens_Streaming = RequestParameter("listens_Streaming")
+IF Empty(@form_listens_Streaming) THEN
+SET @form_listens_Streaming = "false"
+ENDIF
+SET @form_listens_Video = RequestParameter("listens_Video")
+IF Empty(@form_listens_Video) THEN
+SET @form_listens_Video = "false"
+ENDIF
+SET @form_listens_Vinyl = RequestParameter("listens_Vinyl")
+IF Empty(@form_listens_Vinyl) THEN
+SET @form_listens_Vinyl = "false"
+ENDIF
+
+SET @form_streaming = RequestParameter("Preferred Streaming Service")
+SET @form_listArray = RequestParameter("ListA")
+
+/* set the attributes */
+SET @pref0 = CreateObject( "Attribute" )
+SetObjectProperty( @pref0, "Name", 'First Name')
+SetObjectProperty( @pref0, "Value", @form_firstName)
+AddObjectArrayItem(@subscriber,"Attributes",@pref0)
+SET @pref1 = CreateObject( "Attribute" )
+SetObjectProperty( @pref1, "Name", 'State')
+SetObjectProperty( @pref1, "Value", @form_state)
+AddObjectArrayItem(@subscriber,"Attributes",@pref1)
+SET @pref2 = CreateObject( "Attribute" )
+SetObjectProperty( @pref2, "Name", 'Country')
+SetObjectProperty( @pref2, "Value", @form_country)
+AddObjectArrayItem(@subscriber,"Attributes",@pref2)
+SET @pref3 = CreateObject( "Attribute" )
+SetObjectProperty( @pref3, "Name", 'classical')
+SetObjectProperty( @pref3, "Value", @form_classical)
+AddObjectArrayItem(@subscriber,"Attributes",@pref3)
+SET @pref4 = CreateObject( "Attribute" )
+SetObjectProperty( @pref4, "Name", 'Country_OR_Folk')
+SetObjectProperty( @pref4, "Value", @form_Country_OR_Folk)
+AddObjectArrayItem(@subscriber,"Attributes",@pref4)
+SET @pref5 = CreateObject( "Attribute" )
+SetObjectProperty( @pref5, "Name", 'Jazz')
+SetObjectProperty( @pref5, "Value", @form_Jazz)
+AddObjectArrayItem(@subscriber,"Attributes",@pref5)
+SET @pref6 = CreateObject( "Attribute" )
+SetObjectProperty( @pref6, "Name", 'Pop and Rock')
+SetObjectProperty( @pref6, "Value", @form_popandrock)
+AddObjectArrayItem(@subscriber,"Attributes",@pref6)
+SET @pref7 = CreateObject( "Attribute" )
+SetObjectProperty( @pref7, "Name", 'HipHop_and_RandB and Stax')
+SetObjectProperty( @pref7, "Value", @form_HipHop_and_RandB)
+AddObjectArrayItem(@subscriber,"Attributes",@pref7)
+
+SET @pref8 = CreateObject( "Attribute" )
+SetObjectProperty( @pref8, "Name", 'listens_CD')
+SetObjectProperty( @pref8, "Value", @form_listens_CD)
+AddObjectArrayItem(@subscriber,"Attributes",@pref8)
+SET @pref9 = CreateObject( "Attribute" )
+SetObjectProperty( @pref9, "Name", 'listens_Downloads')
+SetObjectProperty( @pref9, "Value", @form_listens_Downloads)
+AddObjectArrayItem(@subscriber,"Attributes",@pref9)
+SET @pref10 = CreateObject( "Attribute" )
+SetObjectProperty( @pref10, "Name", 'listens_Live')
+SetObjectProperty( @pref10, "Value", @form_listens_Live)
+AddObjectArrayItem(@subscriber,"Attributes",@pref10)
+SET @pref11 = CreateObject( "Attribute" )
+SetObjectProperty( @pref11, "Name", 'listens_Streaming')
+SetObjectProperty( @pref11, "Value", @form_listens_Streaming)
+AddObjectArrayItem(@subscriber,"Attributes",@pref11)
+SET @pref12 = CreateObject( "Attribute" )
+SetObjectProperty( @pref12, "Name", 'listens_Video')
+SetObjectProperty( @pref12, "Value", @form_listens_Video)
+AddObjectArrayItem(@subscriber,"Attributes",@pref12)
+SET @pref13 = CreateObject( "Attribute" )
+SetObjectProperty( @pref13, "Name", 'listens_Vinyl')
+SetObjectProperty( @pref13, "Value", @form_listens_Vinyl)
+AddObjectArrayItem(@subscriber,"Attributes",@pref13)
+SET @pref14 = CreateObject( "Attribute" )
+SetObjectProperty( @pref14, "Name", 'Preferred Streaming Service')
+SetObjectProperty( @pref14, "Value", @form_streaming)
+AddObjectArrayItem(@subscriber,"Attributes",@pref14)
+
+
+/*Added Generes PP */
+SET @pref15 = CreateObject( "Attribute" )
+SetObjectProperty( @pref15, "Name", 'Latin')
+SetObjectProperty( @pref15, "Value", @Latin)
+AddObjectArrayItem(@subscriber,"Attributes",@pref15)
+
+/*UNSUB from Lists without values*/
+SET @array = BuildRowsetFromString(QueryParameter('listA'),'|')
+FOR @r = 1 to Rowcount(@array) DO
+SET @configRow = Row(@array,@r)
+SET @configkey = Field(@configRow,1)
+
+SET @value = QueryParameter(@configkey)
+
+IF Empty(@value) THEN
+
+SET @subscription = CreateObject("SubscriberList")
+SetObjectProperty( @subscription, "ID", @configkey )
+SetObjectProperty( @subscription, "IDSpecified", "true" )
+SetObjectProperty( @subscription, "Status", "Unsubscribed" )
+SetObjectProperty( @subscription, "StatusSpecified", "true" )
+AddObjectArrayItem( @subscriber, "Lists", @subscription )
+ELSE
+SET @subscription = CreateObject("SubscriberList")
+SetObjectProperty( @subscription, "ID", @configkey )
+SetObjectProperty( @subscription, "IDSpecified", "true" )
+SetObjectProperty( @subscription, "Status", "Active" )
+SetObjectProperty( @subscription, "StatusSpecified", "true" )
+AddObjectArrayItem( @subscriber, "Lists", @subscription )
+
+ENDIF
+
+NEXT @r
+
+
+/* change the last modify date */
+SET @theTime = Format(Now(), "MM/dd/yyyy")
+SET @LastModify = CreateObject( "Attribute" )
+SetObjectProperty( @LastModify, "Name", "Last Modify" )
+SetObjectProperty( @LastModify, "Value", @theTime )
+AddObjectArrayItem( @subscriber, "Attributes", @LastModify )
+
+/* Update the Subscriber */
+VAR @createOpts, @saveOpt
+
+/* Create the save option */
+SET @saveOpt = CreateObject("SaveOption")
+SetObjectProperty( @saveOpt, "SaveAction", "UpdateAdd" )
+SetObjectProperty( @saveOpt, "PropertyName", "*" )
+
+/* Specify the Update option */
+SET @createOpts = CreateObject("CreateOptions")
+AddObjectArrayItem( @createOpts, "SaveOptions", @saveOpt )
+
+/* Update the subscriber */
+SET @createStatusCode = InvokeCreate( @subscriber, @createErrDesc, @createErrNo, @createOpts )
+
+/* Sett result messages */
+IF @createStatusCode != "OK" THEN
+
+SET @mess = 'did not work :( '
+ELSE
+SET @mess = 'worked!'
+ENDIF
+
+ENDIF
+
+]%%
+<script runat='server' language="javascript">
+  }
+  catch (e) {
+    write(Stringify(e));
+  }
+</script>
+<div>
+
+
+
+
+  <!---Begin Output for review: REMOVE or Comment OUT BEFORE LAUNCH   
+skey: %%=v(@skey)=%% <br/>
+isUpdate: %%=v(@isUpdate)=%% <br/>
+Save: %%=v(@save)=%% <br/>
+Result Message: %%=v(@mess)=%% <br/><br/>
+
+First Name: %%=v(@form_firstName)=%% <br/>
+Email: %%=v(@form_email)=%% <br/>
+State: %%=v(@form_state)=%% <br/>
+Country: %%=v(@form_country)=%% <br/>
+Streaming: %%=v(@form_streaming)=%% <br/>
+List Arry (lists that have been submitted): %%=v(@form_listArray)=%%<br/><br/>
+<br/>
+ 
+<b>Genres</b><br/>
+classical: %%=v(@form_classical )=%%<br/>
+Country_OR_Folk: %%=v( @form_Country_OR_Folk )=%%<br/>
+Jazz : %%=v(@form_Jazz )=%%<br/>
+pop: %%=v( @form_pop )=%%<br/>
+Rock: %%=v( @form_Rock )=%%<br/>
+HipHop_and_RandB: %%=v( @form_HipHop_and_RandB)=%%<br/>
+<br/>
+ 
+<b>Listens</b><br/> 
+listens_CD: %%=v(@form_listens_CD )=%%<br/>
+listens_Downloads: %%=v( @form_listens_Downloads )=%%<br/>
+listens_Live: %%=v(@form_listens_Live)=%%<br/>
+listens_Streaming: %%=v( @form_listens_Streaming )=%%<br/>
+listens_Video: %%=v( @form_listens_Video)=%%<br/> 
+listens_Vinyl: %%=v( @form_listens_Vinyl)=%%<br/> 
+<br/> 
+result: %%=v(@createErrDesc)=%% <br/>
+createStatusCode: %%=v(@createStatusCode)=%% <br/>
+createErrDesc: %%=v(@createErrDesc)=%% <br/>
+createErrNo: %%=v(@createErrNo)=%% <br/><br/>
+
+ %%[
+
+   VAR @queryparams, @rows, @names, @values
+   Set @queryparams = BuildRowsetFromString(QueryParameter('listA'),'|')
+   FOR @i = 1 to Rowcount(@queryparams) DO
+   SET @rows = Row(@queryparams, @i)
+   SET @names = Field(@rows,1)
+   SET @values = QueryParameter(@names)
+           IF @values == "" OR @values is NULL THEN
+           ]%%
+           %%=v(@names)=%%
+           Value: Value is Empty <br/><br/>
+           %%[
+       ENDIF
+          NEXT @i
+  ]%% 
+  
+End Output for review (including above AMPSCRIPT): REMOVE or Comment OUT BEFORE LAUNCH -->
+</div>
+
+</html>
