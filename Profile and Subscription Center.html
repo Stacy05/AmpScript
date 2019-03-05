@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Center</title>
+
+    <style>
+        @charset "UTF-8";
+        @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+        *,
+        *:before,
+        *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            margin: 0px;
+            padding: 0px;
+            background-color: #000;
+        }
+
+        #profile {
+            margin: 0 auto;
+            max-width: 460px;
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #profile form {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        #profile h1 {
+            text-transform: uppercase;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 300;
+        }
+
+        #profile p {
+            font-size: 18px;
+            line-height: 25px;
+            padding: 0px 10px 35px;
+            font-weight: 300;
+        }
+
+        #profile label {
+            display: block;
+            text-align: left;
+            margin: 27px 0px 8px 0px;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        #profile input[type=text],
+        #profile input[type=email] {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+            height: 34px;
+            border: 1px solid #999999 !important;
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+            background-color: #ffffff;
+            color: #2d3133;
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 0px;
+            border-radius: 0px;
+            font-weight: 300;
+        }
+
+        #profile select.desktopDropDown:: -ms-expand {
+            display: none;
+        }
+
+        #profile select {
+            border: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 100%;
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 0px;
+            border-radius: 0px;
+            padding: 5px;
+            font-size: 16px;
+            height: 34px;
+            border: 1px solid #999999;
+            background-position: 98% 50%;
+            background-size: 20px;
+            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/223263/selectArrow.png);
+            background-repeat: no-repeat;
+            background-color: #fff;
+            color: #2d3133;
+            font-weight: 300;
+        }
+
+        #artists {
+            font-size: 20px !important;
+            margin: 34px 0px 22px 0px !important;
+        }
+
+        /*checkbox styling*/
+        div.checkboxGroups label {
+            font-size: 17px;
+            margin: 5px 0px !important;
+        }
+
+        input[type="checkbox"] {
+            top: 7px;
+            position: relative;
+            margin-right: 8px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            box-sizing: border-box;
+            border: 1px solid #999999;
+            -moz-border-radius: 0px;
+            -webkit-border-radius: 0px;
+            border-radius: 0px;
+        }
+
+        input[type="checkbox"]:checked {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 14px;
+            background-color: #fff;
+            background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/223263/sml_check.png);
+        }
+
+        button,
+        input[type="submit"] {
+            text-transform: uppercase;
+            margin: 0px auto 50px auto;
+            color: #ffffff;
+            background-color: #A51C30;
+            border: 0px;
+            font-size: 20px;
+            padding: 12px;
+            width: 147px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        #back-top {
+            position: fixed;
+            display: none;
+            bottom: 100px;
+            right: 0px;
+            margin-right: -10px;
+        }
+
+        #back-top span {
+            padding: 15px 10px 15px 10px;
+            display: block;
+            background-color: rgba(165, 28, 48, 0.78);
+            border-radius: 4px 0px 0px 4px;
+        }
+
+        #back-top a {
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+
+        #back-top a:active {
+            color: white;
+        }
+
+        #checkGroup {
+            margin-bottom: 50px;
+        }
+
+        .subtext {
+            font-size: 17px;
+            padding: 10px 0px 0px;
+            display: block;
+        }
+
+        .checkTitle {
+            
+            margin-top: 45px !important;
+            margin-bottom: 16px !important;
+            
+        }
+        hr{margin:5px 0 0;border-color:#A51C30 !important; width:50%; t}
+        .hide {
+            display: block !important;
+        }
+
+        .mobile {
+            display: none;
+        }
+
+        #header {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            background-color: #001d26;
+        }
+
+        #header .desktop {
+            display: block;
+            margin: 0 auto;
+            max-width: 650px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .mobile {
+                display: block;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            #header .desktop {
+                display: none;
+            }
+
+            #checkGroup {
+                margin-bottom: 100px;
+            }
+
+            #buttonArea {
+                width: 100%;
+                padding: 10px 40px 10px;
+                background-color: #001d26;
+                position: fixed;
+                bottom: 0px;
+                left: 0px;
+                margin: 0;
+                -webkit-box-shadow: 0px -2px 2px 0px rgba(255, 255, 255, 0.3);
+                -moz-box-shadow: 0px -2px 2px 0px rgba(255, 255, 255, 0.3);
+                box-shadow: 0px -2px 2px 0px rgba(255, 255, 255, 0.3);
+            }
+
+            #buttonArea button {
+                display: block;
+                margin: 0 auto;
+                border: 0;
+            }
+        }
+    </style>
+    <!--Div around ampscript is not necessary. added for cleaner appearance -->
+    <div style="display:none;">
+        %%[
+        SET @debug = 1
+
+        IF @debug == 1 AND subscriberid == 0 THEN
+            SET @email = RequestParameter('email')
+            SET @subId = Base64Decode(@email,'UTF-8', 1)
+        ELSE
+            SET @subId = ""
+        ENDIF
+
+        /* Find Out the status of the subscribers */
+        SET @rr1 = CreateObject("RetrieveRequest")
+        SetObjectProperty(@rr1,"ObjectType","ListSubscriber")
+        AddObjectArrayItem(@rr1, "Properties", "Status")
+        AddObjectArrayItem(@rr1, "Properties", "ListID")
+
+        /* Make sure that the list is public */
+        SET @sfp2 = CreateObject("SimpleFilterPart")
+        SetObjectProperty(@sfp2,"Property","SubscriberKey")
+        SetObjectProperty(@sfp2,"SimpleOperator","equals")
+        AddObjectArrayItem(@sfp2,"Value",@subId)
+        /* set the filter to the request */
+        SetObjectProperty(@rr1,"Filter",@sfp2)
+
+        SET @listStatus = InvokeRetrieve(@rr1, @status)
+
+        SET @subRetrieve = CreateObject("RetrieveRequest")
+        SetObjectProperty(@subRetrieve,"ObjectType","Subscriber")
+        SetObjectProperty(@subRetrieve,"Filter",@sfp2)
+        AddObjectArrayItem(@subRetrieve,"Properties","ID")
+        AddObjectArrayItem(@subRetrieve,"Properties","EmailAddress")
+        AddObjectArrayItem(@subRetrieve,"Properties","SubscriberKey")
+        AddObjectArrayItem(@subRetrieve,"Properties","Status")
+        AddObjectArrayItem(@subRetrieve,"Properties","CreatedDate")
+        AddObjectArrayItem(@subRetrieve,"Properties","UnsubscribedDate")
+
+        SET @subRetResult = InvokeRetrieve(@subRetrieve,@overallStatus,@requestId)
+
+        SET @subCount = Rowcount(@subRetResult)
+
+        IF @subCount == 1 THEN
+            SET @sub = Row(@subRetResult,1)
+            SET @email = Field(@sub,"EmailAddress")
+            SET @skey = Field(@sub,"SubscriberKey")
+            SET @subStatus = Field(@sub,"Status")
+            SET @subCreatedDate = Field(@sub,"CreatedDate")
+            SET @subUnsubscribedDate = Field(@sub,"UnsubscribedDate")
+            SET @subAttributes = Field(@sub,"Attributes")
+            SET @subAttCount = Rowcount(@subAttributes)
+
+            IF @subAttCount > 0 THEN
+                FOR @a = 1 TO @subAttCount DO
+                    SET @attribute = Row(@subAttributes,@a)
+                    SET @attributeName = Field(@attribute,"Name")
+                    SET @attributeValue = Field(@attribute,"Value")
+
+                    IF @attributeName == "First Name" THEN
+                        SET @firstName = @attributeValue
+
+                    ELSEIF @attributeName == "Country" THEN
+                        SET @subCountry = @attributeValue
+
+                    ELSEIF @attributeName == "State" THEN
+                        SET @state = @attributeValue
+
+                    ELSEIF @attributeName == "Preferred Streaming Service" THEN
+                        SET @streaming = @attributeValue
+
+                    ELSEIF @attributeName == "classical" THEN
+                        SET @classical = @attributeValue
+                        IF @classical == "True" THEN
+                            SET @classicalDisplay ='checked="checked"'
+                        ELSE
+                            SET @classicalDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "Country_OR_Folk" THEN
+                        SET @Country_OR_Folk = @attributeValue
+                        IF @Country_OR_Folk == "true" THEN
+                            SET @Country_OR_FolkDisplay ='checked="checked"'
+                        ELSE
+                            SET @Country_OR_FolkDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "Jazz" THEN
+                        SET @Jazz = @attributeValue
+                        IF @Jazz == "true" THEN
+                            SET @JazzDisplay ='checked="checked"'
+                        ELSE
+                            SET @JazzDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "Pop" THEN
+                        SET @Pop = @attributeValue
+                        IF @Pop == "true" THEN
+                            SET @PopDisplay ='checked="checked"'
+                        ELSE
+                            SET @PopDisplay =''
+                        ENDIF
+                         
+                    ELSEIF @attributeName == "Rock" THEN
+                        SET @Rock = @attributeValue
+                        IF @Rock == "true" THEN
+                            SET @RockDisplay ='checked="checked"'
+                        ELSE
+                            SET @RockDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "HipHop_and_RandB" THEN
+                        SET @HipHop_and_RandB = @attributeValue
+                        IF @HipHop_and_RandB == "true" THEN
+                            SET @HipHop_and_RandBDisplay ='checked="checked"'
+                        ELSE
+                            SET @HipHop_and_RandBDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_CD" THEN
+                        SET @listens_CD = @attributeValue
+                        IF @listens_CD == "true" THEN
+                            SET @cdDisplay ='checked="checked"'
+                        ELSE
+                            SET @cdDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_Downloads" THEN
+                        SET @listens_Downloads = @attributeValue
+                        IF @listens_Downloads == "true" THEN
+                            SET @downloadsDisplay ='checked="checked"'
+                        ELSE
+                            SET @downloadsDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_Live" THEN
+                        SET @listens_Live = @attributeValue
+                        IF @listens_Live == "true" THEN
+                            SET @liveDisplay ='checked="checked"'
+                        ELSE
+                            SET @liveDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_Streaming" THEN
+                        SET @listens_Streaming = @attributeValue
+                        IF @listens_Streaming == "true" THEN
+                            SET @streamingDisplay ='checked="checked"'
+                        ELSE
+                            SET @streamingDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_Video" THEN
+                        SET @listens_Video = @attributeValue
+                        IF @listens_Video == "true" THEN
+                            SET @videoDisplay ='checked="checked"'
+                        ELSE
+                            SET @videoDisplay =''
+                        ENDIF
+
+                    ELSEIF @attributeName == "listens_Vinyl" THEN
+                        SET @listens_Vinyl = @attributeValue
+                        IF @listens_Vinyl == "true" THEN
+                            SET @vinylDisplay ='checked="checked"'
+                        ELSE
+                            SET @vinylDisplay =''
+                        ENDIF
+
+                    ENDIF
+
+                NEXT @a
+
+            ENDIF
+        ELSE
+        ENDIF
+        ]%%
+    </div>
+</head>
+
+<body>
+    <div id="header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223263/record_company_desktop.gif" class="desktop" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223263/record_company_mobile.gif" class="mobile" />
+    </div>
+    <div id="profile">
+        <div id="formSuccess">
+            <h1>Thank you.</h1>
+            <p>
+                Your updates have been&nbsp;saved.
+            </p>
+        </div>
+
+        <div id="formMessage">
+            <h1>Update Your Profile</h1>
+
+            <p>Below is the current information that we have for you and the email subscription lists that you belong to. Make your changes then click update.</p>
+
+            <form action="#" method="post" id="Profile">
+                <input type="hidden" id="skey" name="skey" value="%%=v(@skey)=%%" />
+                <!--<input type="hidden" id="skey" name="skey"  value="%%=v(@email)=%%"/>-->
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" title="Please enter a valid Email" value="%%=v(@email)=%%" readonly style="color:#bbb;" />
+
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" title="Please enter a valid first name" value="%%=v(@firstName)=%%" />
+
+                <label for="state">State</label>
+                <select name="state" id="stateSelector" title="Please select a state.">
+                    <option value="" disabled selected>Select...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+
+                <label for="country">Country/Region</label>
+                <select name="country" id="countrySelector" title="Please select a country.">
+                    <option value="" disabled selected>Select...</option>
+                    <optgroup>
+                        <option value="CA">Canada</option>
+                        <option value="US">United States</option>
+                    </optgroup>
+                    <optgroup>
+                        <option value="AF">Afghanistan</option>
+                        <option value="AX">land Islands</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia, Plurinational State of</option>
+                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BV">Bouvet Island</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo, the Democratic Republic of the</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="CI">Cte d&apos;Ivoire</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CW">Curaao</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands (Malvinas)</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern Territories</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GG">Guernsey</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea-Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and McDonald Islands</option>
+                        <option value="VA">Holy See (Vatican City State)</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran, Islamic Republic of</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IM">Isle of Man</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JE">Jersey</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KP">Korea, Democratic People&apos;s Republic of</option>
+                        <option value="KR">Korea, Republic of</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Lao People&apos;s Democratic Republic</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macao</option>
+                        <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia, Federated States of</option>
+                        <option value="MD">Moldova, Republic of</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="ME">Montenegro</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PS">Palestinian Territory, Occupied</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Runion</option>
+                        <option value="RO">Romania</option>
+                        <option value="RU">Russian Federation</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="BL">Saint Barthlemy</option>
+                        <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="MF">Saint Martin (French part)</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="RS">Serbia</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SX">Sint Maarten (Dutch part)</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="SS">South Sudan</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen</option>
+                        <option value="SZ">Swaziland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syrian Arab Republic</option>
+                        <option value="TW">Taiwan, Province of China</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania, United Republic of</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TL">Timor-Leste</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="UM">United States Minor Outlying Islands</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VE">Venezuela, Bolivarian Republic of</option>
+                        <option value="VN">Viet Nam</option>
+                        <option value="VG">Virgin Islands, British</option>
+                        <option value="VI">Virgin Islands, U.S.</option>
+                        <option value="WF">Wallis and Futuna</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </optgroup>
+                </select>
+                <label for="Preferred Streaming Service">Preferred Streaming Service</label>
+                <select name="Preferred Streaming Service" id="streamingSelector" title="Please select a streaming service.">
+                    <option value="No Preference Selected" disabled selected>Select...</option>
+                    <option value="Amazon Music">Amazon Music</option>
+                    <option value="Apple Music">Apple Music</option>
+                    <option value="Deezer">Deezer</option>
+                    <option value="Google Play">Google Play</option>
+                    <option value="Pandora">Pandora</option>
+                    <option value="Spotify">Spotify</option>
+                    <option value="Tidal">Tidal</option>
+                </select>
+                <label id="fav" class="hide checkTitle ">Favorite Genres<hr></label>
+                <div id="favoriteGenres" class="checkboxGroups hide ">
+                    <label>
+                        <input type='checkbox' name='classical' value='true' %%=v(@classicalDisplay)=%% class="chk" />Classical
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='Country_OR_Folk' value='true' %%=v(@Country_OR_FolkDisplay)=%% class="chk" />Country or Folk
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='Jazz' value='true' %%=v(@JazzDisplay)=%% class="chk" />Jazz
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='Pop' value='true' %%=v(@PopDisplay)=%% class="chk" />Pop 
+                    </label>
+                    <label>
+                        <input type='checkbox' name='Rock' value='true' %%=v(@RockDisplay)=%% class="chk" />Rock
+                    </label>
+                    <label>
+                        <input type='checkbox' name='HipHop_and_RandB' value='true' %%=v(@HipHop_and_RandBDisplay)=%% class="chk" />Hip Hop &amp; R&amp;B
+                    </label>
+
+                </div>
+                <label class="checkTitle ">How Do You Listen?
+                <hr></label>
+                
+                <div id="listens" class="checkboxGroups">
+                    <label>
+                        <input type='checkbox' name='listens_CD' value='true' %%=v(@cdDisplay)=%% class="chk" />CD
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='listens_Downloads' value='true' %%=v(@downloadsDisplay)=%% class="chk" />Downloads
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='listens_Live' value='true' %%=v(@liveDisplay)=%% class="chk" />Live
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='listens_Streaming' value='true' %%=v(@streamingDisplay)=%% class="chk" />Streaming
+                    </label>
+
+                    <label>
+                        <input type='checkbox' name='listens_Video' value='true' %%=v(@videoDisplay)=%% class="chk" />Video
+                    </label>
+                    <label>
+                        <input type='checkbox' name='listens_Vinyl' value='true' %%=v(@vinylDisplay)=%% class="chk" />Vinyl
+                    </label>
+                </div>
+
+                <label id="artists">Subscriptions
+                <hr>
+                    <span class="subtext">To unsubscribe, uncheck and click Update.</span>
+                </label>
+                <div id="checkGroup" class="checkboxGroups">
+                    <div style="display:none;">
+
+                        %%[
+                        SET @rr2 = CreateObject("RetrieveRequest")
+                        SetObjectProperty(@rr2,"ObjectType","List")
+                        AddObjectArrayItem(@rr2, "Properties", "ListName")
+                        AddObjectArrayItem(@rr2, "Properties", "Type")
+                        AddObjectArrayItem(@rr2, "Properties", "Description")
+                        AddObjectArrayItem(@rr2, "Properties", "ID")
+
+                        /* Make sure that the list is public */
+                        SET @sfp2 = CreateObject("SimpleFilterPart")
+                        SetObjectProperty(@sfp2,"Property","Type")
+                        SetObjectProperty(@sfp2,"SimpleOperator","equals")
+                        AddObjectArrayItem(@sfp2,"Value","public")
+
+
+
+                        /* Make sure that the list is not a publication list */
+                        SET @sfp3 = CreateObject("SimpleFilterPart")
+                        SetObjectProperty(@sfp3,"Property","ListClassification")
+                        SetObjectProperty(@sfp3,"SimpleOperator","equals")
+                        AddObjectArrayItem(@sfp3,"Value","ExactTargetList")
+
+                        /* set the complex filter */
+                        SET @cf1 = CreateObject("ComplexFilterPart")
+                        SetObjectProperty(@cf1,"LeftOperand",@sfp2)
+                        SetObjectProperty(@cf1,"RightOperand",@sfp3)
+
+                        SetObjectProperty(@cf1,"LogicalOperator","AND")
+
+
+
+                        /* set the filter to the request */
+                        SetObjectProperty(@rr2,"Filter",@cf1)
+
+                        SET @attributes = InvokeRetrieve(@rr2, @status)
+
+                        /* String to store all the list ids */
+                        SET @ListsA = ""
+                        SET @ListsU = ""
+                        SET @lA = 1
+                        SET @lU = 1
+
+                        /* make sure that lists are present */
+                        IF RowCount(@attributes) > 0 THEN
+
+                            /* For all of the present lists, take the following actions */
+                            FOR @c = 1 TO RowCount(@attributes) DO
+
+                                /* get each of the rows */
+                                SET @list = Row(@attributes,@c)
+
+                                /* get the necesary variables */
+                                SET @list_name = Field(@list,'ListName')
+                                SET @list_ID = Field(@list,'ID')
+                                SET @list_des = Field(@list,'Description')
+
+                                SET @printed = false
+                                /* Find the status of the public list */
+                                IF RowCount(@listStatus) > 0 THEN
+
+                                    /* for all the status of the list */
+                                    FOR @d = 1 TO RowCount(@listStatus) DO
+
+                                        SET @lisStat = Row(@listStatus,@d)
+                                        SET @lisStat_id = Field(@lisStat,'ListID')
+                                        SET @list_status = Field(@lisStat,'Status')
+
+                                    IF @list_status == 'Active' THEN
+                                        SET @check ='checked="checked"'
+                                    ELSE
+                                        SET @check =''
+                                    ENDIF
+
+                                    IF @lisStat_id == @list_ID AND @list_status == 'Active' OR @list_status == 'Unsubscribed' THEN
+                        ]%%
+                    </div>
+                    <label>
+                        <input type='checkbox' name='%%=v(@list_ID)=%%' value='true' %%=v(@check)=%% class="chk" />%%=v(@list_name)=%%
+                    </label>
+                    <div style="display:none;">
+                        %%[
+                                    /* create the array of Active list ids */
+                                    IF @lA == 1 THEN
+                                        SET @ListsA = @list_ID
+                                        SET @lA = 2
+                                    ELSE
+                                        SET @ListsA = Concat(@ListsA, "|" , @list_ID)
+                                    ENDIF
+
+                                    SET @printed = true
+
+                                    ENDIF
+                                    NEXT @d
+
+                                ENDIF
+                            NEXT @c
+
+                        ENDIF
+                        ]%%
+                    </div>
+                </div>
+                <input type="hidden" name="ListA" value="%%=v(@ListsA)=%%" />
+                <div id="buttonArea">
+                    <button type="submit" id="update" value="1" name="preference"> Update </button>
+                </div>
+            </form>
+            <p id="back-top"><a href="#top"><span><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/223263/backToTop.png" style="width:42px;" /></span></a></p>
+        </div>
+    </div>
+    <div style="display:none;">
+
+        %%[
+        IF IsNullDefault(@subCountry,'') != '' THEN
+            SET @subCountryJS = Concat('<sc','ript>document.getElementById("countrySelector").value = "',@subCountry,'";</','script>')
+        ]%%
+            %%=v(@subCountryJS)=%%
+        %%[
+        ENDIF
+
+        IF IsNullDefault(@state,'') != '' THEN
+            SET @stateJS = Concat('<sc','ript>document.getElementById("stateSelector").value = "',@state,'";</','script>')
+        ]%%
+
+            %%=v(@stateJS)=%%
+
+        %%[
+        ENDIF
+
+        IF IsNullDefault(@streaming,'') != '' THEN
+            SET @streamingJS = Concat('<sc','ript>document.getElementById("streamingSelector").value = "',@streaming,'";</','script>')
+        ]%%
+            %%=v(@streamingJS)=%%
+        %%[
+        ENDIF
+        ]%%
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#formSuccess').hide();
+        });
+
+        $(function () {
+            $('form').submit(function (event) {
+
+                /* stop form from submitting normally */
+                event.preventDefault();
+
+                /* get the action attribute from the <form action=""> element */
+                var $form = $(this),
+                    url = $form.attr('action'),
+                    ser = $form.serialize();
+
+                /*test to see data being posted*/
+                //alert('Posting:' +url +ser );
+
+                /* Send the data using post with element id name and name2*/
+                var posting = $.post(url + '&' + ser);
+                $('#formMessage').hide();
+                $('#formSuccess').show();
+
+                //return;
+
+            });
+        });
+
+
+
+        // hide #back-top first
+        $("#back-top").hide();
+        // fade in #back-top
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 800) {
+                    $('#back-top').fadeIn();
+                } else {
+                    $('#back-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-top a').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+        });// end Back to top
+
+        //Alphabetize artists checkboxes 
+        function sortByText(a, b) {
+            return $.trim($(a).text()) > $.trim($(b).text()) ? 1 : -1;
+        }
+        var artistList = $("#checkGroup").children("label").detach().sort(sortByText)
+        $("#checkGroup").append(artistList);
+      //END Alphabetize artists checkboxes
+    </script>
+</body>
+
+</html>
