@@ -1,0 +1,82 @@
+%%[ /*<!--*/ 
+VAR @xml0, @xml
+SET @xml0 = httpget("http://yoursite.com/feed/")
+SET @xml1 = Replace(@xml0,'media:image url="','image>')
+SET @xml = Replace(@xml1,'"/>',"</image>")
+SET @titles = BuildRowsetFromXML(@xml,"//item/title",1)
+SET @descs = BuildRowsetFromXML(@xml,"//item/description",1)
+SET @pubdas = BuildRowsetFromXML(@xml,"//item/pubDate",1)
+SET @links = BuildRowsetFromXML(@xml,"//item/link",1)
+SET @imagesBefore = BuildRowsetFromXML(@xml,"//item/image",1)
+SET @lastBuildDate = BuildRowsetFromXML(@xml,"//lastBuildDate",1)
+SET @builddate = Field(Row(@lastBuildDate,1), "Value")
+SET @rowCount = RowCount(@titles)
+IF @rowCount >= 1 THEN
+    FOR @i = 1 to 1 DO
+    SET @pubda = Field(Row(@pubdas,@i), "Value")
+    SET @now = DateDiff(@pubda,NOW(), "D")
+    IF @now >= 0 THEN 
+        SET @title = Field(Row(@titles,@i),"Value")
+        SET @desc = Field(Row(@descs,@i), "Value")
+        SET @link = Field(Row(@links,@i), "Value") 
+        SET @image = Field(Row(@imagesBefore,@i), "Value")
+        SET @descMaxChar = Substring(@desc,1,200)
+        SET @descFormatted = @descMaxChar
+  /*-->*/ ]%% 
+<!--<br>
+@link: %%=v(@link)=%%
+<br>
+@rowCount: %%=v(@rowCount)=%%
+<br>
+@title: %%=v(@title)=%%
+<br>
+@image: %%=v(@image)=%%
+<br>
+@desc: %%=v(@descFormatted)=%%-->
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="fullwidth" style="width: 650px;" width="650">
+  <tr>
+    <td align="center" class="fullwidth removepad blockme padhoriz padbottom2" style="padding:30px 30px 20px;" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="center" style="background-color:#f1f1f1; padding:  0px 0px 20px;" valign="top">
+            <a href="%%=RedirectTo(@link)=%%" style="text-decoration: none; color: #000000;" target="_blank"><img alt="" border="0" class="fullwidth" src="%%=v(@image)=%%" style="display:block;" width="590"></a>
+          </td>
+          <!--End Image -->
+          <!--Headline Text-->
+        </tr>
+        <tr>
+          <td align="left" style="background-color:#f1f1f1; padding:15px 20px 10px 20px; color:#000000;font-size:20px;font-family:'Montserrat', arial, sans-serif; font-weight:600; line-height:24px;">
+            %%=v(@title)=%%</td>
+        </tr>
+        <!--End Headline Text-->
+        <!--Description Text-->
+        <tr>
+          <td align="left" style="background-color:#f1f1f1; padding:5px 20px 15px 20px; color:#000000; font-size:16px;font-family:'Montserrat', arial, sans-serif;line-height:20px;font-weight:400!important;">
+            %%=v(@descFormatted)=%%&nbsp; 
+            <a href="%%=RedirectTo(@link)=%%" style="color:#b32d33; text-decoration:none;">Read&nbsp;More</a>
+          </td>
+        </tr>
+        <!--End Description Text-->
+        <tr>
+          <td align="left" style="background-color:#f1f1f1; padding:15px 20px 20px 20px;">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" style="margin: 0px auto;" width="105">
+              <!--CTA-->
+              <tr>
+                <td align="left" bgcolor="#b32d33" class="button_normal.noresize" style=" font-font-family:'Montserrat', arial, sans-serif; font-size:14px; height: 35px; font-weight:400; text-align: center; color:#ffffff; text-decoration: none !important;" valign="middle">
+                  <!--[if mso]>  <center style="font-family:sans-serif;font-size:14px; height: 40px; width:130px; cursor:pointer;"></center><![endif]-->
+                  <a href="%%=RedirectTo(@link)=%%" style="text-decoration:none; display: inline-block; line-height: 35px; text-align: center; font-family:'Montserrat', arial, sans-serif; width: 120px; -webkit-text-size-adjust:none;  color:#ffffff;" target="_blank" title="View More">VIEW</a>
+                </td>
+              </tr>
+              <!--End CTA-->
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table> %%[ /*<!--*/ 
+ENDIF
+NEXT @i 
+ELSE @rowCount = 0 THEN
+SET @error = "no rows"
+endif /*-->*/]%%
